@@ -1,0 +1,10 @@
+{
+  "name": "pdf2img",
+  "version": "1.0.0",
+  "description": "PDF 转图片云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3",
+    "pdf-parse": "^1.1.1"
+  }
+}
