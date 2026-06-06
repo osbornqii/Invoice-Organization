@@ -1,0 +1,100 @@
+{
+  "description": "公司模板配置文件 - 用于Excel导出定制模板",
+  "version": "1.1.0",
+  
+  "templates": [
+    {
+      "companyName": "示例公司A",
+      "password": "companyA123",
+      "useExpenseTemplate": false,
+      "templateConfig": {
+        "columns": [
+          { "field": "index", "title": "序号", "width": 6 },
+          { "field": "type", "title": "发票类型", "width": 18 },
+          { "field": "date", "title": "开票日期", "width": 14 },
+          { "field": "number", "title": "发票号码", "width": 22 },
+          { "field": "amountWithoutTax", "title": "不含税金额", "width": 12 },
+          { "field": "tax", "title": "税额", "width": 10 },
+          { "field": "amount", "title": "价税合计", "width": 12 },
+          { "field": "seller", "title": "销售方", "width": 30 }
+        ]
+      },
+      "isActive": true
+    },
+    {
+      "companyName": "报销单模板示例",
+      "password": "expense123",
+      "useExpenseTemplate": true,
+      "templateConfig": null,
+      "isActive": true,
+      "description": "使用差旅费用报销单模板，自动填充交通发票和餐饮发票数据"
+    }
+  ],
+  
+  "expenseTemplateConfig": {
+    "description": "差旅费用报销单模板配置",
+    "templateFile": "templates/expense_template.xls",
+    "dataStartRow": 9,
+    "maxDataRows": 24,
+    "fieldMapping": {
+      "departureMonth": { "col": "C", "description": "出发月" },
+      "departureDay": { "col": "D", "description": "出发日" },
+      "departurePlace": { "col": "E", "description": "出发地点" },
+      "arrivalMonth": { "col": "F", "description": "到达月" },
+      "arrivalDay": { "col": "G", "description": "到达日" },
+      "arrivalPlace": { "col": "H", "description": "到达地点" },
+      "vehicleType": { "col": "I", "description": "交通工具" },
+      "vehicleAmount": { "col": "J", "description": "交通金额" },
+      "tripDays": { "col": "K", "description": "出差天数" },
+      "mealCount": { "col": "L", "description": "餐补次数" },
+      "mealStandard": { "col": "M", "description": "补助标准" },
+      "mealAmount": { "col": "N", "description": "补助金额" },
+      "cityTraffic": { "col": "O", "description": "市内交通" },
+      "refundFee": { "col": "P", "description": "退票费" },
+      "subtotal": { "col": "S", "description": "小计" }
+    },
+    "headerRow": {
+      "passengerName": "C6"
+    },
+    "totalRow": 33
+  },
+  
+  "defaultTemplate": {
+    "columns": [
+      { "field": "index", "title": "序号", "width": 6 },
+      { "field": "type", "title": "发票类型", "width": 18 },
+      { "field": "date", "title": "开票时间", "width": 14 },
+      { "field": "amountWithoutTax", "title": "不含税金额", "width": 12 },
+      { "field": "tax", "title": "税额", "width": 10 },
+      { "field": "amount", "title": "价税合计", "width": 12 },
+      { "field": "buyer", "title": "付款方", "width": 30 },
+      { "field": "number", "title": "发票号码", "width": 22 }
+    ]
+  },
+  
+  "availableFields": [
+    { "field": "index", "title": "序号", "description": "自动生成的行号" },
+    { "field": "type", "title": "发票类型", "description": "如：增值税发票、出租车发票等" },
+    { "field": "date", "title": "开票日期", "description": "发票开具日期" },
+    { "field": "number", "title": "发票号码", "description": "发票唯一编号" },
+    { "field": "amountWithoutTax", "title": "不含税金额", "description": "金额小计" },
+    { "field": "tax", "title": "税额", "description": "税金" },
+    { "field": "amount", "title": "价税合计", "description": "总金额" },
+    { "field": "seller", "title": "销售方", "description": "开票单位名称" },
+    { "field": "buyer", "title": "购买方", "description": "付款单位名称" },
+    { "field": "passengerName", "title": "出行人", "description": "交通发票旅客姓名" },
+    { "field": "departure", "title": "出发地", "description": "交通发票出发站" },
+    { "field": "arrival", "title": "到达地", "description": "交通发票到达站" },
+    { "field": "vehicleType", "title": "交通工具", "description": "火车/飞机/出租车等" },
+    { "field": "vehicleNumber", "title": "车次/航班", "description": "火车车次或航班号" }
+  ],
+  
+  "usageGuide": {
+    "step1": "在 templates 数组中添加公司模板配置",
+    "step2": "打开微信开发者工具 -> 云开发控制台 -> 数据库",
+    "step3": "创建 company_templates 集合",
+    "step4": "将模板配置添加到数据库记录中",
+    "step5": "如使用报销单模板，需将模板文件上传到云存储 templates/expense_template.xls",
+    "note": "useExpenseTemplate: true 表示使用报销单模板，false 表示使用自定义列模板"
+  }
+}
